@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+         /** css  alert  **/
+       .container_alert {
+        background-color: #333;
+        color: #fff;
+        padding: 25px;
+        width: 200px;
+        opacity: 0;
+        transform: translateX(-100%); /* Ban đầu thông báo nằm ngoài khung nhìn bên trái */
+        transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        position: fixed;
+        top: 20px;
+        left: 0px;
+        border-radius: 5px;
+       }
+       .show {
+        opacity: 1;
+        transform: translateX(0); 
+       }
+
+
+       /** css modal **/
+       .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 999; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.container_modal {
+    margin-top: 7rem;
+}
+#openModalBtn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+}
+    </style>
+    
+    <!--- code alert -->
+    <div class="container_alert" id="alertInterval">
+        Thông báo HOT !!!
+    </div>
+
+    <!--- code modal -->
+   <div class="container_modal">
+    <button id="openModalBtn">Hiện Modal</button>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <p>Nội dung của modal</p>
+        </div>
+    </div>
+
+   </div>
+
+    <script>
+
+        // JS alert ---------------------------------------------------------------
+        const alertIntervals = document.getElementById('alertInterval');
+        
+        function showAlert() {
+            alertIntervals.classList.add('show'); 
+
+            setTimeout(() => {
+                alertIntervals.classList.remove('show'); 
+            }, 3000); // thời gian hiện 
+        }
+
+        setInterval(() => {
+            setTimeout(showAlert, 1000); // thời gian delay xuất hiện
+        }, 5000); // Lặp lại sau mỗi 5 giây (3 giây hiển thị + 2 giây chờ)
+
+
+         // JS modal ---------------------------------------------------------------
+        var modals = document.getElementById('myModal')
+        var BtnModal = document.getElementById('openModalBtn')
+        var closeBtns = document.getElementById('closeBtn')
+
+        BtnModal.onclick = function() {
+            modals.style.display = 'block'
+        }
+
+        closeBtns.onclick = function() {
+            modals.style.display = 'none'
+        }
+
+      
+    </script>
+</body>
+</html>
